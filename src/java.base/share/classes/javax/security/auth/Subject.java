@@ -334,19 +334,22 @@ public final class Subject implements java.io.Serializable {
     @SuppressWarnings("removal")
     @Deprecated(since="17", forRemoval=true)
     public static Subject getSubject(final AccessControlContext acc) {
-
+        System.out.println("Subject -> getSubject()");
         java.lang.SecurityManager sm = System.getSecurityManager();
         if (sm != null) {
+            System.out.println("Subject -> getSubject(): sm != null");
             sm.checkPermission(AuthPermissionHolder.GET_SUBJECT_PERMISSION);
         }
-
+        System.out.println("Subject -> getSubject() -> Objects.requireNonNull");
         Objects.requireNonNull(acc, ResourcesMgr.getString
                 ("invalid.null.AccessControlContext.provided"));
 
         if (!SharedSecrets.getJavaLangAccess().allowSecurityManager()) {
+            System.out.println("Subject -> getSubject() -> !SharedSecrets.getJavaLangAccess().allowSecurityManager()");
             throw new UnsupportedOperationException(
                     "getSubject is supported only if a security manager is allowed");
         } else {
+            System.out.println("Subject -> getSubject() -> SharedSecrets.getJavaLangAccess().allowSecurityManager()");
             // return the Subject from the DomainCombiner of the provided context
             return AccessController.doPrivileged
                     (new java.security.PrivilegedAction<>() {

@@ -299,6 +299,7 @@ public final class AccessControlContext {
     AccessControlContext(ProtectionDomain[] context,
                          boolean isPrivileged)
     {
+        if (context == null) {System.out.println("AccessControlContext context is null.");}
         this.context = context;
         this.isPrivileged = isPrivileged;
         this.isAuthorized = true;
@@ -337,11 +338,14 @@ public final class AccessControlContext {
     DomainCombiner getAssignedCombiner() {
         AccessControlContext acc;
         if (isPrivileged) {
+            System.out.println("AccessControlContext getAssignedCombiner: isPrivileged");
             acc = privilegedContext;
         } else {
+            System.out.println("AccessControlContext getAssignedCombiner: is not Privileged");
             acc = AccessController.getInheritedAccessControlContext();
         }
         if (acc != null) {
+            System.out.println("AccessControlContext getAssignedCombiner: acc != null");
             return acc.combiner;
         }
         return null;
