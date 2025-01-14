@@ -217,13 +217,17 @@ public final class DOMXMLSignatureFactory extends XMLSignatureFactory {
 
         // check tag
         String tag = element.getLocalName();
+        System.out.println("DOMXMLSignatureFactory tag is: " + tag);
         String namespace = element.getNamespaceURI();
+        System.out.println("DOMXMLSignatureFactory namespace is: " + tag);
         if (tag == null || namespace == null) {
             throw new MarshalException("Document implementation must " +
                 "support DOM Level 2 and be namespace aware");
         }
+        System.out.println("DOMXMLSignatureFactory XMLSignature.XMLNS is: " + XMLSignature.XMLNS);
         if ("Signature".equals(tag) && XMLSignature.XMLNS.equals(namespace)) {
             try {
+                System.out.println("The provider name is: " + getProvider().getName());
                 return new DOMXMLSignature(element, context, getProvider());
             } catch (MarshalException me) {
                 throw me;

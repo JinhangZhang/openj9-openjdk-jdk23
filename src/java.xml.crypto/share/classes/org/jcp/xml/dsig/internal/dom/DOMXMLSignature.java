@@ -143,14 +143,17 @@ public final class DOMXMLSignature extends DOMStructure
         throws MarshalException
     {
         localSigElem = sigElem;
+        System.out.println("DOMXMLSignature localSigElem is: " + sigElem);
         ownerDoc = localSigElem.getOwnerDocument();
 
         // get Id attribute, if specified
         id = DOMUtils.getAttributeValue(localSigElem, "Id");
+        System.out.println("DOMXMLSignature id is: " + id);
         // unmarshal SignedInfo
         Element siElem = DOMUtils.getFirstChildElement(localSigElem,
                                                        "SignedInfo",
                                                        XMLSignature.XMLNS);
+        System.out.println("DOMXMLSignature siElem tag is: " + siElem.getTagName() + ", content is: " + siElem.getTextContent());
         si = new DOMSignedInfo(siElem, context, provider);
 
         // unmarshal SignatureValue

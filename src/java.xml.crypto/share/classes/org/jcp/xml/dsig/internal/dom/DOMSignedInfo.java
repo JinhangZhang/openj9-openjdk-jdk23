@@ -157,6 +157,7 @@ public final class DOMSignedInfo extends DOMStructure implements SignedInfo {
         boolean secVal = Utils.secureValidation(context);
 
         String signatureMethodAlgorithm = signatureMethod.getAlgorithm();
+        System.out.println("DOMSignedInfo signatureMethod is: " + signatureMethodAlgorithm);
         if (secVal && Policy.restrictAlg(signatureMethodAlgorithm)) {
             throw new MarshalException(
                 "It is forbidden to use algorithm " + signatureMethodAlgorithm +
@@ -194,6 +195,7 @@ public final class DOMSignedInfo extends DOMStructure implements SignedInfo {
         // unmarshal References
         ArrayList<Reference> refList = new ArrayList<>(5);
         Element refElem = DOMUtils.getNextSiblingElement(smElem, "Reference", XMLSignature.XMLNS);
+        System.out.println("DOMSignedInfo refElem is: " + refElem.getTagName() + ", relElem context is: " + refElem.getTextContent());
         refList.add(new DOMReference(refElem, context, provider));
 
         refElem = DOMUtils.getNextSiblingElement(refElem);

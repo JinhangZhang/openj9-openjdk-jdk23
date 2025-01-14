@@ -195,11 +195,13 @@ public abstract class XMLSignatureFactory {
      * @see Provider
      */
     public static XMLSignatureFactory getInstance(String mechanismType) {
+        System.out.println("DEBUG0: XMLSignatureFactory getInstance(String mechanismType)");
         if (mechanismType == null) {
             throw new NullPointerException("mechanismType cannot be null");
         }
         Provider[] provs = Security.getProviders();
         for (Provider p : provs) {
+            System.out.println("DEBUG1: XMLSignatureFactory getInstance(String mechanismType) provider is: " + p.getName());
             Service s = p.getService("XMLSignatureFactory", mechanismType);
             if (s != null) {
                 Object obj = null;
@@ -211,6 +213,7 @@ public abstract class XMLSignatureFactory {
                 if (obj instanceof XMLSignatureFactory) {
                     XMLSignatureFactory factory = (XMLSignatureFactory) obj;
                     factory.mechanismType = mechanismType;
+                    System.out.println("DEBUG2: XMLSignatureFactory getInstance(String mechanismType) provider is: " + p.getName());
                     factory.provider = p;
                     return factory;
                 }
@@ -244,6 +247,7 @@ public abstract class XMLSignatureFactory {
      */
     public static XMLSignatureFactory getInstance(String mechanismType,
         Provider provider) {
+        System.out.println("DEBUG0: XMLSignatureFactory provider is: " + provider.getName());
         if (mechanismType == null) {
             throw new NullPointerException("mechanismType cannot be null");
         } else if (provider == null) {
@@ -262,6 +266,7 @@ public abstract class XMLSignatureFactory {
             if (obj instanceof XMLSignatureFactory) {
                 XMLSignatureFactory factory = (XMLSignatureFactory) obj;
                 factory.mechanismType = mechanismType;
+                System.out.println("DEBUG1: XMLSignatureFactory provider is: " + provider.getName());
                 factory.provider = provider;
                 return factory;
             }
@@ -299,6 +304,7 @@ public abstract class XMLSignatureFactory {
      */
     public static XMLSignatureFactory getInstance(String mechanismType,
         String provider) throws NoSuchProviderException {
+        System.out.println("DEBUG0: XMLSignatureFactory provider name is: " + provider);
         if (mechanismType == null) {
             throw new NullPointerException("mechanismType cannot be null");
         } else if (provider == null) {
@@ -306,7 +312,7 @@ public abstract class XMLSignatureFactory {
         } else if (provider.length() == 0) {
             throw new NoSuchProviderException();
         }
-
+        System.out.println("XMLSignatureFactory provider name is: " + provider);
         Provider p = Security.getProvider(provider);
         if (p == null) {
             throw new NoSuchProviderException("No such provider: " +
@@ -323,6 +329,7 @@ public abstract class XMLSignatureFactory {
             if (obj instanceof XMLSignatureFactory) {
                 XMLSignatureFactory factory = (XMLSignatureFactory) obj;
                 factory.mechanismType = mechanismType;
+                System.out.println("DEBUG1: XMLSignatureFactory provider name is: " + provider);
                 factory.provider = p;
                 return factory;
             }
@@ -353,6 +360,7 @@ public abstract class XMLSignatureFactory {
      * @see Provider
      */
     public static XMLSignatureFactory getInstance() {
+        System.out.println("DEBUG0: XMLSignatureFactory getInstance()");
         return getInstance("DOM");
     }
 

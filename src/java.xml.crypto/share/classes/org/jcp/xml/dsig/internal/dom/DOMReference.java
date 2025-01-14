@@ -217,6 +217,7 @@ public final class DOMReference extends DOMStructure
 
         // unmarshal Transforms, if specified
         Element nextSibling = DOMUtils.getFirstChildElement(refElem);
+        System.out.println("DOMReference nextSibling is: " + nextSibling.getTagName() + ", nextSibling context is: " + nextSibling.getTextContent() + "nextSibling LocalName is: " + nextSibling.getLocalName());
         List<Transform> newTransforms = new ArrayList<>(MAXIMUM_TRANSFORM_COUNT);
         if ("Transforms".equals(nextSibling.getLocalName())
             && XMLSignature.XMLNS.equals(nextSibling.getNamespaceURI())) {
@@ -244,6 +245,7 @@ public final class DOMReference extends DOMStructure
                 transformElem = DOMUtils.getNextSiblingElement(transformElem);
             }
             nextSibling = DOMUtils.getNextSiblingElement(nextSibling);
+            System.out.println("DOMReference nextSibling2 is: " + nextSibling.getTagName() + ", nextSibling2 context is: " + nextSibling.getTextContent() + "nextSibling2 LocalName is: " + nextSibling.getLocalName());
         }
         if (!"DigestMethod".equals(nextSibling.getLocalName())
             && XMLSignature.XMLNS.equals(nextSibling.getNamespaceURI())) {
@@ -254,6 +256,7 @@ public final class DOMReference extends DOMStructure
 
         // unmarshal DigestMethod
         Element dmElem = nextSibling;
+        System.out.println("DOMReference dmElem is: " + dmElem.getTagName() + ", dmElem context is: " + dmElem.getTextContent() + "dmElem LocalName is: " + dmElem.getLocalName());
         this.digestMethod = DOMDigestMethod.unmarshal(dmElem);
         String digestMethodAlgorithm = this.digestMethod.getAlgorithm();
         if (secVal && Policy.restrictAlg(digestMethodAlgorithm)) {
