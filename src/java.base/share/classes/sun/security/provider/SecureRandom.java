@@ -276,9 +276,6 @@ implements java.io.Serializable {
         Arrays.fill(state, (byte) 0x00);
         Arrays.fill(remainder, (byte) 0x00);
         remCount = 0;
-        digest = null;
-        state = null;
-        remainder = null;
     }
     /*[ENDIF] CRIU_SUPPORT */
 

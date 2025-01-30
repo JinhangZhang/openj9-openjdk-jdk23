@@ -69,6 +69,7 @@ public final class CRIUSECProvider extends Provider {
         putService(new Service(this, "MessageDigest", "MD5", "sun.security.provider.MD5", null, null));
         putService(new Service(this, "Mac", "HmacSHA256", "com.sun.crypto.provider.HmacCore$HmacSHA256", null, null));
         putService(new Service(this, "SecureRandom", "SHA1PRNG", "sun.security.provider.NativePRNG$CRIUNativePRNG", null, null));
+        putService(new Service(this, "SecureRandom", "DRBG", "sun.security.provider.DRBG", null, null));
     }
 
     /**
