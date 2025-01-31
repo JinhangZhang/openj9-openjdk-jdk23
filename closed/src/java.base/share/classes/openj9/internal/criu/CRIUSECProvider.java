@@ -64,11 +64,11 @@ public final class CRIUSECProvider extends Provider {
                                           "1.3.14.3.2.26" };
 
         // SHA1PRNG is the default name needed by the jdk, but SHA1 is not used, rather it reads directly from /dev/random.
-        // putService(new Service(this, "MessageDigest", "SHA-1", "sun.security.provider.SHA", java.util.Arrays.asList(aliases), null));
+        putService(new Service(this, "MessageDigest", "SHA-1", "sun.security.provider.SHA", java.util.Arrays.asList(aliases), null));
         putService(new Service(this, "MessageDigest", "SHA-256", "sun.security.provider.SHA2$SHA256", null, null));
         putService(new Service(this, "MessageDigest", "MD5", "sun.security.provider.MD5", null, null));
         putService(new Service(this, "Mac", "HmacSHA256", "com.sun.crypto.provider.HmacCore$HmacSHA256", null, null));
-        // putService(new Service(this, "SecureRandom", "SHA1PRNG", "sun.security.provider.NativePRNG$CRIUNativePRNG", null, null));
+        putService(new Service(this, "SecureRandom", "SHA1PRNG", "sun.security.provider.NativePRNG$CRIUNativePRNG", null, null));
         putService(new Service(this, "SecureRandom", "DRBG", "sun.security.provider.DRBG", null, null));
     }
 
